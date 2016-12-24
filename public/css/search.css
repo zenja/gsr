@@ -1,16 +1,19 @@
 .search-result {
-    margin: 10px;
+    margin: 10px auto;
     padding: 10px;
-    background-color: #f8f9fa;
+    width: 600px;
 }
 
 .search-result-title {
+    margin: 0;
     font-weight: bold;
 }
 
 .search-result-url {
-    color: #94d82d;
+    margin: 0;
+    color: #40c057;
 }
 
 .search-result-snippet {
+    margin: 0;
 }
