@@ -11,6 +11,7 @@
     {{range .Results}}
     <div class="search-result">
         <p class="search-result-title"><a href="{{ .Link}}">{{ .Title}}</a></p>
+        <p class="search-result-url">{{.HTMLFormattedURL}}</p>
         <p class="search-result-snippet">{{.HTMLSnippet}}</p>
     </div>
     {{end}}

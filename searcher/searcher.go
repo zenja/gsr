@@ -48,22 +48,24 @@ func (s *Searcher) Search(query string) ([]SearchResult, error) {
 	var results []SearchResult
 	for _, res := range r.Items {
 		results = append(results, SearchResult{
-			Title:       res.Title,
-			Link:        res.Link,
-			Snippet:     res.Snippet,
-			HTMLSnippet: template.HTML(res.HtmlSnippet),
-			DisplayLink: res.DisplayLink,
+			Title:            res.Title,
+			Link:             res.Link,
+			DisplayLink:      res.DisplayLink,
+			HTMLFormattedURL: template.HTML(res.HtmlFormattedUrl),
+			Snippet:          res.Snippet,
+			HTMLSnippet:      template.HTML(res.HtmlSnippet),
 		})
 	}
 	return results, nil
 }
 
 type SearchResult struct {
-	Title       string
-	Link        string
-	DisplayLink string
-	Snippet     string
-	HTMLSnippet template.HTML
+	Title            string
+	Link             string
+	DisplayLink      string
+	HTMLFormattedURL template.HTML
+	Snippet          string
+	HTMLSnippet      template.HTML
 }
 
 type SearchError struct {

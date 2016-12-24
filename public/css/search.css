@@ -8,5 +8,9 @@
     font-weight: bold;
 }
 
+.search-result-url {
+    color: #94d82d;
+}
+
 .search-result-snippet {
 }
