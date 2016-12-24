@@ -2,6 +2,15 @@ body {
     font-family: arial, sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: #1a0dab;
+}
+
+a:visited {
+    color: #609;
+}
+
 #search_header {
     margin: 10px auto;
     width: 600px;
@@ -16,8 +25,7 @@ body {
 }
 
 .search-result {
-    margin: 10px auto;
-    padding: 10px;
+    margin: 25px auto;
     width: 600px;
 }
 
