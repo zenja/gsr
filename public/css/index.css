@@ -1,0 +1,20 @@
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+}
+
+#search_div {
+    width: 50%;
+    text-align: center;
+}
+
+#search_input {
+    width: 80%;
+    margin: auto;
+}
+
+#search_btn {
+    margin-top: 20px;
+}

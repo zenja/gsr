@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Google Search Relay</title>
+
+    <link href="/public/css/pure-min.css" rel="stylesheet">
+    <link href="/public/css/index.css" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <form method="GET" action="/">
-            <input type="text" name="q">
-            <button type="submit">Search</button>
-        </form>
+    <div id="container">
+        <div id="search_div">
+            <div id="logo_div">
+                <img src="/public/img/googlelogo.png" />
+            </div>
+            <form class="pure-form pure-form-stacked" method="GET" action="/">
+                <input id="search_input" type="text" name="q">
+                <button id="search_btn" class="pure-button pure-button-primary" type="submit">Search</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
