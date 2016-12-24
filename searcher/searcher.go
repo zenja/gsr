@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strings"
 	"time"
 
 	gcs "google.golang.org/api/customsearch/v1"
@@ -58,7 +59,7 @@ func (s *Searcher) Search(query string) ([]SearchResult, error) {
 			DisplayLink:      res.DisplayLink,
 			HTMLFormattedURL: template.HTML(res.HtmlFormattedUrl),
 			Snippet:          res.Snippet,
-			HTMLSnippet:      template.HTML(res.HtmlSnippet),
+			HTMLSnippet:      template.HTML(strings.Replace(res.HtmlSnippet, "<br>", "", -1)),
 		})
 	}
 	return results, nil

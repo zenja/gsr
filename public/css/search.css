@@ -1,3 +1,20 @@
+body {
+    font-family: arial, sans-serif;
+}
+
+#search_header {
+    margin: 10px auto;
+    width: 600px;
+}
+
+#logo_div {
+    text-align: center;
+}
+
+#search_input {
+    width: 500px;
+}
+
 .search-result {
     margin: 10px auto;
     padding: 10px;
@@ -6,14 +23,16 @@
 
 .search-result-title {
     margin: 0;
-    font-weight: bold;
+    font-size: 18px;
 }
 
 .search-result-url {
     margin: 0;
-    color: #40c057;
+    font-size: 14px;
+    color: rgb(0, 102, 33);
 }
 
 .search-result-snippet {
+    font-size: 13px;
     margin: 0;
 }

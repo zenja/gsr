@@ -9,6 +9,15 @@
 </head>
 <body>
 <div>
+    <div id="search_header">
+        <div id="logo_div">
+            <img src="/public/img/googlelogo.png" />
+        </div>
+        <form class="pure-form" method="GET" action="/">
+            <input id="search_input" type="text" name="q">
+            <button id="search_btn" class="pure-button pure-button-primary" type="submit">Search</button>
+        </form>
+    </div>
     {{range .Results}}
     <div class="search-result">
         <p class="search-result-title"><a href="{{ .Link}}">{{ .Title}}</a></p>
