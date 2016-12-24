@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results - {{.Query}}</title>
+
+    <link href="/public/css/search.css" rel="stylesheet">
+</head>
+<body>
+<div>
+    {{range .Results}}
+    <div class="search-result">
+        <p class="search-result-title"><a href="{{ .Link}}">{{ .Title}}</a></p>
+        <p class="search-result-snippet">{{.HTMLSnippet}}</p>
+    </div>
+    {{end}}
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.search-result {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.search-result-title {
+    font-weight: bold;
+}
+
+.search-result-snippet {
+}

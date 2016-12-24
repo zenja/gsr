@@ -26,3 +26,6 @@ _testmain.go
 # Intellij
 .idea/
 *.iml
+
+# tmp dir
+/tmp/
