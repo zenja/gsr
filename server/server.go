@@ -18,7 +18,7 @@ type QueryAndSearchResults struct {
 }
 
 func StartServer(port int, apiKey string, engineID string, timeout time.Duration) {
-	ser = searcher.New(apiKey, engineID)
+	ser = searcher.New(apiKey, engineID, timeout)
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 	http.HandleFunc("/", handle)
 	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)

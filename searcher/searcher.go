@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"time"
 
 	gcs "google.golang.org/api/customsearch/v1"
 	"google.golang.org/api/googleapi"
@@ -15,16 +16,20 @@ import (
 type Searcher struct {
 	apiKey   string
 	engineID string
+	timeout  time.Duration
 }
 
-func New(apiKey string, engineID string) *Searcher {
-	return &Searcher{apiKey: apiKey, engineID: engineID}
+func New(apiKey string, engineID string, timeout time.Duration) *Searcher {
+	return &Searcher{apiKey: apiKey, engineID: engineID, timeout: timeout}
 }
 
 func (s *Searcher) Search(query string) ([]SearchResult, error) {
 	qURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s",
 		s.apiKey, s.engineID, url.QueryEscape(query))
-	resp, err := http.Get(qURL)
+	client := http.Client{
+		Timeout: s.timeout,
+	}
+	resp, err := client.Get(qURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to request %s: %s", qURL, err)
 	}
