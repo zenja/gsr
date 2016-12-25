@@ -28,6 +28,17 @@
         <p class="search-result-snippet">{{.HTMLSnippet}}</p>
     </div>
     {{end}}
+    <div id="search_result_index">
+        <p>
+            {{range .PageIDs}}
+                {{if eq . $.CurrentPageID}}
+                    <a id="current_page_id">{{.}}</a>
+                {{else}}
+                    <a href="/?q={{$.Query}}&start={{pageID2StartIndex .}}">{{.}}</a>
+                {{end}}
+            {{end}}
+        </p>
+    </div>
 </div>
 </body>
 </html>

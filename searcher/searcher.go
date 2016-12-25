@@ -25,8 +25,12 @@ func New(apiKey string, engineID string, timeout time.Duration) *Searcher {
 }
 
 func (s *Searcher) Search(query string) (*SearchResult, error) {
-	qURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s",
-		s.apiKey, s.engineID, url.QueryEscape(query))
+	return s.SearchFrom(query, 1)
+}
+
+func (s *Searcher) SearchFrom(query string, startIndex int) (*SearchResult, error) {
+	qURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s&start=%d",
+		s.apiKey, s.engineID, url.QueryEscape(query), startIndex)
 	client := http.Client{
 		Timeout: s.timeout,
 	}
@@ -63,20 +67,22 @@ func (s *Searcher) Search(query string) (*SearchResult, error) {
 		})
 	}
 	return &SearchResult{
-		TotalResults:          r.SearchInformation.TotalResults,
+		TotalResults:          int(r.SearchInformation.TotalResults),
 		FormattedTotalResults: r.SearchInformation.FormattedTotalResults,
 		SearchTime:            r.SearchInformation.SearchTime,
 		FormattedSearchTime:   r.SearchInformation.FormattedSearchTime,
 		Results:               singleResults,
+		StartIndex:            int(r.Queries["request"][0].StartIndex),
 	}, nil
 }
 
 type SearchResult struct {
-	TotalResults          int64
+	TotalResults          int
 	FormattedTotalResults string
 	SearchTime            float64
 	FormattedSearchTime   string
 	Results               []SingleSearchResult
+	StartIndex            int
 }
 
 type SingleSearchResult struct {

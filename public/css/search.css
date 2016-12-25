@@ -51,3 +51,19 @@ a:visited {
     font-size: 13px;
     margin: 0;
 }
+
+#search_result_index {
+    width: 600px;
+    margin: 25px auto;
+    text-align: center;
+    font-size: 13px;
+}
+
+#search_result_index a {
+    margin: 0 8px;
+    color: #4285f4;
+}
+
+#current_page_id {
+    color: #000 !important;
+}
