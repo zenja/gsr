@@ -24,7 +24,7 @@ func New(apiKey string, engineID string, timeout time.Duration) *Searcher {
 	return &Searcher{apiKey: apiKey, engineID: engineID, timeout: timeout}
 }
 
-func (s *Searcher) Search(query string) ([]SearchResult, error) {
+func (s *Searcher) Search(query string) (*SearchResult, error) {
 	qURL := fmt.Sprintf("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s",
 		s.apiKey, s.engineID, url.QueryEscape(query))
 	client := http.Client{
@@ -51,9 +51,9 @@ func (s *Searcher) Search(query string) ([]SearchResult, error) {
 		return nil, fmt.Errorf("failed to unmarshal search result: %s", err)
 	}
 
-	var results []SearchResult
+	var singleResults []SingleSearchResult
 	for _, res := range r.Items {
-		results = append(results, SearchResult{
+		singleResults = append(singleResults, SingleSearchResult{
 			Title:            res.Title,
 			Link:             res.Link,
 			DisplayLink:      res.DisplayLink,
@@ -62,10 +62,24 @@ func (s *Searcher) Search(query string) ([]SearchResult, error) {
 			HTMLSnippet:      template.HTML(strings.Replace(res.HtmlSnippet, "<br>", "", -1)),
 		})
 	}
-	return results, nil
+	return &SearchResult{
+		TotalResults:          r.SearchInformation.TotalResults,
+		FormattedTotalResults: r.SearchInformation.FormattedTotalResults,
+		SearchTime:            r.SearchInformation.SearchTime,
+		FormattedSearchTime:   r.SearchInformation.FormattedSearchTime,
+		Results:               singleResults,
+	}, nil
 }
 
 type SearchResult struct {
+	TotalResults          int64
+	FormattedTotalResults string
+	SearchTime            float64
+	FormattedSearchTime   string
+	Results               []SingleSearchResult
+}
+
+type SingleSearchResult struct {
 	Title            string
 	Link             string
 	DisplayLink      string

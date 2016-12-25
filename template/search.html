@@ -18,7 +18,10 @@
             <button id="search_btn" class="pure-button pure-button-primary" type="submit">Search</button>
         </form>
     </div>
-    {{range .Results}}
+    <div id="search_info">
+        <p>Found {{.Result.FormattedTotalResults}} results (used {{.Result.FormattedSearchTime}}s)</p>
+    </div>
+    {{range .Result.Results}}
     <div class="search-result">
         <p class="search-result-title"><a href="{{ .Link}}">{{ .Title}}</a></p>
         <p class="search-result-url">{{.HTMLFormattedURL}}</p>

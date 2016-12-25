@@ -13,8 +13,8 @@ var ser *searcher.Searcher
 var temps = template.Must(template.ParseFiles("template/index.html", "template/search.html", "template/error.html"))
 
 type QueryAndSearchResults struct {
-	Query   string
-	Results []searcher.SearchResult
+	Query  string
+	Result *searcher.SearchResult
 }
 
 func StartServer(port int, apiKey string, engineID string, timeout time.Duration) {

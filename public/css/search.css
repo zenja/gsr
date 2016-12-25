@@ -24,6 +24,13 @@ a:visited {
     width: 500px;
 }
 
+#search_info {
+    margin: 0 auto;
+    width: 600px;
+    font-size: 13px;
+    color: #808080;
+}
+
 .search-result {
     margin: 25px auto;
     width: 600px;
